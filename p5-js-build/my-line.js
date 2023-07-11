@@ -5,13 +5,14 @@ class MyLine{
         this.x = winMouseX;
         this.y = winMouseY;
     }
-    setDetails(strokeColor, strokeWeight){
+    setDetails(strokeColor, customStrokeWeight){
         this.strokeColor = strokeColor;
         this.customStrokeWeight = customStrokeWeight;
     }
     show(){
-        stroke(this.strokeColor);
-        strokeWeight(this.customStrokeWeight);
+        stroke(200);
+        strokeWeight(random(this.customStrokeWeight, 2));
         line(this.px, this.py, this.x, this.y);
+        // circle()
     }
 }
