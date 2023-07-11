@@ -1,54 +1,32 @@
-let canvasWidth = 500;
-let canvasHeight = window.innerHeight;
-let mouseXPosition;
-let mouseYPosition;
-let lines = [];
-let xValues = [];
-let yValues = [];
-let curveValues = (10, 30, 60, 150, 10, 600, 30, 90);
-
-// stats
-let linesCount = document.getElementById('lines-count');
-
-// properties 
-let strokeColor, customStrokeWeight;
+let points = []; // Array to store the cursor positions
 
 function setup() {
-  createCanvas(canvasWidth, canvasHeight);
-  background(20);
+  createCanvas(window.innerWidth, window.innerHeight);
+  background(0);
 }
 
 function draw() {
-  // display stats
-  linesCount.innerText = lines.length;
+  // No code needed here for this example
+}
 
-  // drawing function
-  if(mouseIsPressed){
+function mouseDragged() {
+  let point = { x: mouseX, y: mouseY };
+  points.push(point);
 
-    xValues.push(winMouseX);
-    yValues.push(winMouseY);
-    // console.log(xValues, yValues);
-
-    strokeColor = 255;
-    customStrokeWeight = .5;
-    var myLine = new MyLine();
-    myLine.setDetails(strokeColor, customStrokeWeight);
-    lines.push(myLine);
-  }
-
-  for (let index = 0; index < lines.length; index++) {
-    lines[index].show();    
-  }
-
+  // Set stroke properties
   noFill();
-  stroke(random(255), random(255), 0);
-  strokeWeight(random(1, 5))
-  // x - 10, 300
-  // y - 30, 900
-  smooth();
-  curve(
-    pmouseX, pmouseY, 
-    mouseX, mouseY, 
-    pmouseX, pmouseY, 
-    mouseX, mouseY);
+  stroke(255);
+  strokeWeight(random(0.01, 1));
+
+  // Draw the curve using the stored cursor positions
+  if (points.length > 1) {
+    beginShape();
+    curveVertex(points[0].x, points[0].y);
+    for (let i = 0; i < points.length; i++) {
+      let { x, y } = points[i];
+      curveVertex(x, y);
+    }
+    curveVertex(points[points.length - 1].x, points[points.length - 1].y);
+    endShape();
+  }
 }

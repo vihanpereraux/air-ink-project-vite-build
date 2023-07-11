@@ -17,7 +17,8 @@ canvas {
 #lines-count{
   position: absolute;
   z-index: 1;
-  transform: translateX(-50%);
-  left: 50%;
+  /* transform: translateX(-50%); */
+  right: 5%;
+  color: white;
   font-family: 'Poppins';
 }

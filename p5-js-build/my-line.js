@@ -1,17 +1,20 @@
 class MyLine{
     constructor(){
-        this.px = pwinMouseX;
-        this.py = pwinMouseY;
-        this.x = winMouseX;
-        this.y = winMouseY;
+        this.px = pmouseX;
+        this.py = pmouseY;
+        this.x = mouseX;
+        this.y = mouseY;
     }
-    setDetails(strokeColor, strokeWeight){
+    setDetails(strokeColor, customStrokeWeight){
         this.strokeColor = strokeColor;
         this.customStrokeWeight = customStrokeWeight;
     }
     show(){
         stroke(this.strokeColor);
-        strokeWeight(this.customStrokeWeight);
+        strokeWeight(random(0.1, this.customStrokeWeight));
+        strokeCap(ROUND);
+        strokeJoin(ROUND);
         line(this.px, this.py, this.x, this.y);
+        // circle()
     }
 }
