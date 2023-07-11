@@ -6,17 +6,16 @@ function setup() {
 }
 
 function draw() {
-  // No code needed here for this example
-}
+  frameRate(30)
+  if (mouseIsPressed){
+    let point = { x: mouseX, y: mouseY };
+    points.push(point);
+  }
 
-function mouseDragged() {
-  let point = { x: mouseX, y: mouseY };
-  points.push(point);
 
-  // Set stroke properties
   noFill();
-  stroke(255);
-  strokeWeight(random(0.01, 1));
+  stroke(random(0, 255), random(0, 255), random(0, 255));
+  strokeWeight(random(1, 2));
 
   // Draw the curve using the stored cursor positions
   if (points.length > 1) {
@@ -30,3 +29,4 @@ function mouseDragged() {
     endShape();
   }
 }
+
