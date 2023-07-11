@@ -1,4 +1,4 @@
-let canvasWidth = 500;
+let canvasWidth = window.innerWidth;
 let canvasHeight = window.innerHeight;
 let mouseXPosition;
 let mouseYPosition;
@@ -15,7 +15,7 @@ let strokeColor, customStrokeWeight;
 
 function setup() {
   createCanvas(canvasWidth, canvasHeight);
-  background(20);
+  background(220);
 }
 
 function draw() {
@@ -29,8 +29,8 @@ function draw() {
     yValues.push(winMouseY);
     // console.log(xValues, yValues);
 
-    strokeColor = 255;
-    customStrokeWeight = .5;
+    strokeColor = 0;
+    customStrokeWeight = 5;
     var myLine = new MyLine();
     myLine.setDetails(strokeColor, customStrokeWeight);
     lines.push(myLine);
@@ -41,14 +41,23 @@ function draw() {
   }
 
   noFill();
-  stroke(random(255), random(255), 0);
-  strokeWeight(random(1, 5))
+  stroke(255, 0, 0);
+  strokeWeight(5)
   // x - 10, 300
   // y - 30, 900
   smooth();
-  curve(
-    pmouseX, pmouseY, 
-    mouseX, mouseY, 
-    pmouseX, pmouseY, 
-    mouseX, mouseY);
+
+  fill(0, 0, 255);
+  beginShape();
+  curveVertex(pwinMouseX, pwinMouseY);
+  curveVertex(winMouseX, winMouseY);
+  curveVertex(pwinMouseX, pwinMouseY);
+  curveVertex(winMouseX, winMouseY);
+  endShape();
+
+  // curve(
+  //   pwinMouseX, pwinMouseY, 
+  //   winMouseX, winMouseY, 
+  //   pwinMouseX, pwinMouseY, 
+  //   winMouseX, winMouseY);
 }
