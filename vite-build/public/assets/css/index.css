@@ -1,0 +1,21 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html, body {
+	width: 100%;
+	height: 100%;
+}
+#pal{
+	position: absolute;
+	z-index: 1000;
+	width: 100vw;
+	height: 100vh;
+}
+.lol svg {
+	z-index: 1;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
