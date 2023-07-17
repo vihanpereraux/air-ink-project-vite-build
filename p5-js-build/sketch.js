@@ -14,16 +14,16 @@ function draw() {
   noFill();
   stroke(255);
 
-  strokeCap();
-  strokeWeight(strokeSize);
-  beginShape();
-    curveVertex(200, 80);
-    curveVertex(200, 80);
-    curveVertex(400, 200);
-    curveVertex(700, 100);
-    curveVertex(900, 400);
-    curveVertex(900, 400);
-  endShape();
+  // strokeCap();
+  // strokeWeight(strokeSize);
+  // beginShape();
+  //   curveVertex(200, 80);
+  //   curveVertex(200, 80);
+  //   curveVertex(400, 200);
+  //   curveVertex(700, 100);
+  //   curveVertex(900, 400);
+  //   curveVertex(900, 400);
+  // endShape();
 
   if(mouseIsPressed){
     let point = { x: mouseX, y: mouseY }
