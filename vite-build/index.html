@@ -3,15 +3,85 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>AirInk Interactive Installation UI</title>
     
     <!-- styles -->
     <link rel="stylesheet" href="./assets/css/index.css">
-
     <script src="https://cdn.jsdelivr.net/npm/p5@1.7.0/lib/p5.js"></script>
   </head>
 
   <body>
+    <!-- top bar -->
+    <div id="top-bar">
+      <span>airlink</span>
+      <span>menu</span>
+    </div>
+
+    <!-- control panel -->
+    <div id="control-panel">
+      <div id="brush-types">
+        <div class="brush-type" id="brush-one">
+          <img class="logo" src="https://i.ibb.co/TmrPvLp/round-brush.png" alt="">
+          <p class="name">Brush 01</p>
+        </div>
+
+        <div class="brush-type" id="brush-two">
+          <img class="logo" src="https://i.ibb.co/TmrPvLp/round-brush.png" alt="">
+          <p class="name">Brush 02</p>
+        </div>
+
+        <div class="brush-type" id="brush-three">
+          <img class="logo" src="https://i.ibb.co/TmrPvLp/round-brush.png" alt="">
+          <p class="name">Brush 03</p>
+        </div>
+
+        <div class="brush-type" id="brush-four">
+          <img class="logo" src="https://i.ibb.co/TmrPvLp/round-brush.png" alt="">
+          <p class="name">Brush 04</p>
+        </div>
+      </div>
+
+      <div class="devider"></div>
+
+      <div id="brush-colors">
+        <div class="brush-color" id="brush-color">
+          <div class="custom-color-picker" id="custom-brush-color-picker">
+            <input type="color" class="color-value" id="brush-color-value" name="favcolor" value="#ff0000">
+          </div>
+          <p id="lol" class="name">Brush</p>
+        </div>
+
+        <div class="brush-color" id="stroke-color">
+          <div class="custom-color-picker" id="custom-stroke-color-picker">
+            <input type="color" class="color-value" id="stroke-color-value" name="favcolor" value="#ff0000">
+          </div>
+          <p class="name">Stroke</p>
+        </div>
+      </div>
+
+      <div class="devider"></div>
+
+      <div id="brush-sizes">
+        <div class="brush-size" id="brush-size">
+          <span>50</span>
+          <p class="name">Brush size</p>
+        </div>
+
+        <div class="brush-size" id="stroke-size">
+          <span>02</span>
+          <p class="name">Stroke size</p>
+        </div>
+      </div>
+
+      <div class="devider"></div>
+
+      <div id="eraser">
+          <img class="logo" src="https://i.ibb.co/TmrPvLp/round-brush.png" alt="">
+          <p class="name">Eraser</p>
+      </div>
+    </div>
+
+    <script type="module" src="./assets/js/main.js"></script>
     <script type="module" src="./sketch.js"></script>
   </body>
 </html>
