@@ -4,6 +4,7 @@ let brushColors;
 let brushSizes;
 let eraser;
 
+// control panel layout
 icons = [
 ['https://i.ibb.co/TmrPvLp/round-brush.png', 'brush 01'],
 ['https://i.ibb.co/TmrPvLp/round-brush.png', 'brush 02'],
@@ -24,14 +25,14 @@ brushColors = document.getElementById('brush-colors');
 brushColors.innerHTML = `
     <div class="brush-color">
         <div class="custom-color-picker" id="custom-brush-color-picker">
-        <input type="color" class="color-value" id="brush-color-value" name="favcolor" value="#ff0000">
+            <input type="color" class="color-value" id="brush-color-value" name="favcolor" value="#ff0000">
         </div>
         <p id="lol" class="name">Brush</p>
     </div>
 
     <div class="brush-color">
         <div class="custom-color-picker" id="custom-stroke-color-picker">
-        <input type="color" class="color-value" id="stroke-color-value" name="favcolor" value="#ff0000">
+            <input type="color" class="color-value" id="stroke-color-value" name="favcolor" value="#ff0000">
         </div>
         <p class="name">Stroke</p>
     </div>
@@ -55,3 +56,22 @@ eraser.innerHTML = `
     <img class="logo" src="https://i.ibb.co/TmrPvLp/round-brush.png" alt="">
     <p class="name">Eraser</p>
 `;
+
+
+// control panel functions
+let brushColorValue;
+let strokeColorValue;
+let customColorPicker;
+import hexRgb from 'hex-rgb'
+
+customColorPicker = document.getElementsByClassName('custom-color-picker');
+
+brushColorValue = document.getElementById('brush-color-value');
+brushColorValue.addEventListener('input', function(){
+    customColorPicker[0].style.background = brushColorValue.value;
+});
+
+strokeColorValue = document.getElementById('stroke-color-value');
+strokeColorValue.addEventListener('input', function(){
+    customColorPicker[1].style.background = strokeColorValue.value;
+})
