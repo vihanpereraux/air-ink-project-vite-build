@@ -1,3 +1,5 @@
+import hexRgb from 'hex-rgb';
+
 let icons = [];
 let brushTypes;
 let brushColors;
@@ -62,16 +64,18 @@ eraser.innerHTML = `
 let brushColorValue;
 let strokeColorValue;
 let customColorPicker;
-import hexRgb from 'hex-rgb'
 
 customColorPicker = document.getElementsByClassName('custom-color-picker');
 
+localStorage.setItem("brush-color", "ffffff");
 brushColorValue = document.getElementById('brush-color-value');
 brushColorValue.addEventListener('input', function(){
     customColorPicker[0].style.background = brushColorValue.value;
+    localStorage.setItem("brush-color", brushColorValue.value);
+    console.log(localStorage.getItem("brush-color"));
 });
 
 strokeColorValue = document.getElementById('stroke-color-value');
 strokeColorValue.addEventListener('input', function(){
     customColorPicker[1].style.background = strokeColorValue.value;
-})
+});
