@@ -42,14 +42,9 @@ brushColors.innerHTML = `
 
 brushSizes = document.getElementById('brush-sizes');
 brushSizes.innerHTML = `
-    <div class="brush-size" id="brush-size">
-        <span>50</span>
+    <div class="brush-size">
         <p class="name">Brush size</p>
-    </div>
-
-    <div class="brush-size" id="stroke-size">
-        <span>02</span>
-        <p class="name">Stroke size</p>
+        <input id="brush-size" type="range" min="1" max="100" value="30">
     </div>
 `;
 
@@ -64,18 +59,75 @@ eraser.innerHTML = `
 let brushColorValue;
 let strokeColorValue;
 let customColorPicker;
+let brushSize;
+let getBrushTypes;
 
+// enabling brushes
+setbrushStatus();
+getBrushTypes = document.getElementsByClassName('brush-type');
+// event listners for brushes
+for (let index = 0; index < getBrushTypes.length; index++) {
+    getBrushTypes[index].addEventListener('click', function(){
+        console.log(index);
+        switch (index) {
+            case 0:
+                setbrushStatus();
+                localStorage.setItem("brush-type-01", "enabled");
+                break;
+
+            case 1:
+                setbrushStatus();
+                localStorage.setItem("brush-type-02", "enabled");
+                break;
+            
+            case 2:
+                setbrushStatus();
+                localStorage.setItem("brush-type-02", "enabled");
+                break;
+
+            case 3:
+                setbrushStatus();
+                localStorage.setItem("brush-type-03", "enabled");
+                break;
+
+            default:
+                break;
+        }    
+    })
+};
+// event listner for the eraser
+eraser.addEventListener('click', function(){
+    setbrushStatus();
+    localStorage.setItem("eraser", "enabled");
+})
+
+function setbrushStatus(){
+    for (let index = 0; index < 4; index++) {
+        localStorage.setItem("brush-type-0" + String(index+1), "disabled");  
+    };
+    localStorage.setItem("eraser", "disabled");
+}
+
+// brush color
 customColorPicker = document.getElementsByClassName('custom-color-picker');
-
-localStorage.setItem("brush-color", "ffffff");
 brushColorValue = document.getElementById('brush-color-value');
+localStorage.setItem("brush-color", "ffffff");
+
 brushColorValue.addEventListener('input', function(){
     customColorPicker[0].style.background = brushColorValue.value;
     localStorage.setItem("brush-color", brushColorValue.value);
-    console.log(localStorage.getItem("brush-color"));
 });
 
 strokeColorValue = document.getElementById('stroke-color-value');
 strokeColorValue.addEventListener('input', function(){
     customColorPicker[1].style.background = strokeColorValue.value;
 });
+
+// brush size
+localStorage.setItem("brush-size", 3);
+brushSize = document.getElementById('brush-size');
+brushSize.addEventListener('input', function(){
+    localStorage.setItem("brush-size", brushSize.value);
+});
+
+
