@@ -7,6 +7,9 @@ let strokeSize;
 let strokeColor;
 let strokeWeightDevider= 10;
 let points = [];
+let allPoints = [];
+
+let kkl = 0;
 
 
 const p5Instance = new p5(p5Instance => {
@@ -36,6 +39,7 @@ const p5Instance = new p5(p5Instance => {
     if(p5Instance.mouseIsPressed){
       let point = { x: p5Instance.mouseX, y: p5Instance.mouseY }
       points.push(point);
+      allPoints.push([point, "brush-01", kkl]);
   
       p5Instance.strokeWeight(strokeSize + 3);
       p5Instance.beginShape();
@@ -64,6 +68,7 @@ const p5Instance = new p5(p5Instance => {
     if(p5Instance.mouseIsPressed){
       let point = { x: p5Instance.mouseX, y: p5Instance.mouseY }
       points.push(point);
+      allPoints.push(point);
   
       p5Instance.strokeWeight(strokeSize);
       p5Instance.beginShape();
@@ -93,10 +98,12 @@ const p5Instance = new p5(p5Instance => {
     }
   }
 
-  p5Instance.keyPressed =() => {
-    if(p5Instance.keyCode === p5Instance.LEFT_ARROW){
-      console.log(points)
-    }
+  p5Instance.keyPressed = () => {
+    
+  }
+
+  p5Instance.mouseReleased = () =>{
+    
   }
 });
 

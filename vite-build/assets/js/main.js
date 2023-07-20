@@ -5,6 +5,7 @@ let brushTypes;
 let brushColors;
 let brushSizes;
 let eraser;
+let clear;
 
 // control panel layout
 icons = [
@@ -53,6 +54,12 @@ eraser.innerHTML = `
     <img class="logo" src="https://i.ibb.co/TmrPvLp/round-brush.png" alt="">
     <p class="name">Eraser</p>
 `;
+
+clear = document.getElementById('clear');
+clear.innerHTML = `
+    <img class="logo" src="https://i.ibb.co/TmrPvLp/round-brush.png" alt="">
+    <p class="name">clear</p>
+`
 
 
 // control panel functions

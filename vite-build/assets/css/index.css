@@ -104,7 +104,8 @@ canvas{
 #control-panel .brush-type p, 
 #control-panel .brush-color p,
 #control-panel .brush-size p,
-#control-panel #eraser p{
+#control-panel #eraser p,
+#control-panel #clear p{
 	font-size: 10px;
 	font-weight: 600;
 	text-align: center;
@@ -184,6 +185,21 @@ canvas{
 	position: relative;
 }
 #control-panel #eraser img{
+	position: absolute;
+	transform: translate(-50%, -50%);
+	left: 50%;
+	top: 40%;
+}
+
+#control-panel #clear{
+	width: 60px;
+	height: 60px;
+	background: none;
+	margin-left: 10px;
+	margin-right: 10px;
+	position: relative;
+}
+#control-panel #clear img{
 	position: absolute;
 	transform: translate(-50%, -50%);
 	left: 50%;
