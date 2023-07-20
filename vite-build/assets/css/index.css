@@ -76,12 +76,12 @@ canvas{
 }
 
 #control-panel .devider{
-	width: 1.2px;
+	width: 1px;
 	height: 60px;
 	background: black;
 	opacity: .3;
-	margin-left: 10px;
-	margin-right: 10px;
+	margin-left: 12px;
+	margin-right: 12px;
 }
 
 #control-panel #brush-types{
@@ -146,7 +146,7 @@ canvas{
 	transform: translate(-50%, -50%);
 	top: 40%;
 	left: 50%;
-	background: yellow;
+	background: white;
 	border: none;
 	width: 30px;
 	height: 30px;
@@ -160,12 +160,18 @@ canvas{
 	display: flex;
 }
 #control-panel .brush-size{
-	width: auto;
+	width: 120px;
 	height: 60px;
 	background: none;
 	margin-left: 10px;
 	margin-right: 10px;
 	position: relative;
+}
+#control-panel #brush-size{
+	position: absolute;
+	width: 120px;
+	transform: translateY(-50%);
+	top: 40%;
 }
 #control-panel .brush-size span{
 	position: absolute;

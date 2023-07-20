@@ -1,4 +1,6 @@
 import hexRgb from 'hex-rgb';
+import { FcCancel } from "react-icons/fc";
+
 
 let icons = [];
 let brushTypes;
@@ -9,16 +11,16 @@ let clear;
 
 // control panel layout
 icons = [
-['https://i.ibb.co/TmrPvLp/round-brush.png', 'brush 01'],
-['https://i.ibb.co/TmrPvLp/round-brush.png', 'brush 02'],
-['https://i.ibb.co/TmrPvLp/round-brush.png', 'brush 03'],
-['https://i.ibb.co/TmrPvLp/round-brush.png', 'brush 04']]
+['https://img.icons8.com/sf-regular-filled/48/paint.png', 'brush 01', '42'],
+['https://img.icons8.com/ios-filled/50/pencil-tip.png', 'brush 02', '32'],
+['https://img.icons8.com/ios-filled/50/splash.png', 'brush 03', '30'],
+['https://img.icons8.com/ios-glyphs/30/deodorant-spray.png', 'brush 04', '30']]
 
 brushTypes = document.getElementById('brush-types');
 for (let index = 0; index < 4; index++) {
     brushTypes.innerHTML += `
     <div class="brush-type">
-        <img class="logo" src="${ icons[index][0] }" alt="">
+        <img width="${ icons[index][2] }" height="${ icons[index][2] }" class="logo" src="${ icons[index][0] }" alt="">
         <p class="name">${ icons[index][1] }</p>
     </div>
     ` 
@@ -30,14 +32,7 @@ brushColors.innerHTML = `
         <div class="custom-color-picker" id="custom-brush-color-picker">
             <input type="color" class="color-value" id="brush-color-value" name="favcolor" value="#ff0000">
         </div>
-        <p id="lol" class="name">Brush</p>
-    </div>
-
-    <div class="brush-color">
-        <div class="custom-color-picker" id="custom-stroke-color-picker">
-            <input type="color" class="color-value" id="stroke-color-value" name="favcolor" value="#ff0000">
-        </div>
-        <p class="name">Stroke</p>
+        <p id="lol" class="name">color</p>
     </div>
 `;
 
@@ -51,13 +46,21 @@ brushSizes.innerHTML = `
 
 eraser = document.getElementById('eraser');
 eraser.innerHTML = `
-    <img class="logo" src="https://i.ibb.co/TmrPvLp/round-brush.png" alt="">
+    <img 
+        width="32" 
+        height="32" 
+        src="https://img.icons8.com/external-vitaliy-gorbachev-fill-vitaly-gorbachev/60/external-eraser-back-to-school-vitaliy-gorbachev-fill-vitaly-gorbachev.png"
+        alt="external-eraser-back-to-school-vitaliy-gorbachev-fill-vitaly-gorbachev"/>
     <p class="name">Eraser</p>
 `;
 
 clear = document.getElementById('clear');
 clear.innerHTML = `
-    <img class="logo" src="https://i.ibb.co/TmrPvLp/round-brush.png" alt="">
+    <img 
+        width="37" 
+        height="37" 
+        src="https://img.icons8.com/fluency/48/cancel.png" 
+        alt="cancel"/>
     <p class="name">clear</p>
 `
 
@@ -127,11 +130,6 @@ localStorage.setItem("brush-color", "ffffff");
 brushColorValue.addEventListener('input', function(){
     customColorPicker[0].style.background = brushColorValue.value;
     localStorage.setItem("brush-color", brushColorValue.value);
-});
-
-strokeColorValue = document.getElementById('stroke-color-value');
-strokeColorValue.addEventListener('input', function(){
-    customColorPicker[1].style.background = strokeColorValue.value;
 });
 
 // brush size
