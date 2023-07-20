@@ -106,6 +106,10 @@ for (let index = 0; index < getBrushTypes.length; index++) {
 eraser.addEventListener('click', function(){
     setbrushStatus();
     localStorage.setItem("eraser", "enabled");
+});
+// event listner for the clear
+clear.addEventListener('click', function(){
+    
 })
 
 function setbrushStatus(){
