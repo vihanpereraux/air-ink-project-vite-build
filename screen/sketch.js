@@ -9,7 +9,6 @@ let strokeColor;
 let strokeWeightDevider= 10;
 let points = [];
 let clear = document.getElementById('clear');
-let isFingerTouched = false;
 
 var socket
 const p5Instance = new p5(p5Instance => {
@@ -18,8 +17,39 @@ const p5Instance = new p5(p5Instance => {
     p5Instance.background(backgroundColor);
     
     socket = io.connect('http://localhost:3000');
-    // socket.on('mouse', newDrawing);
+    socket.on('mouse', newDrawing);
   };
+
+  function newDrawing(clientData) {
+    console.log('calling');
+    
+    if(clientData.isFingerTouched == true){
+      points.push(clientData);
+
+      p5Instance.stroke(clientData.brushColor);
+      p5Instance.strokeWeight(strokeSize + 3);
+      
+      p5Instance.beginShape();
+      for (let index = 0; index < points.length; index++) {
+        if(index == 0){
+          p5Instance.curveVertex(points[index].x, points[index].y);
+          p5Instance.curveVertex(points[index].x, points[index].y);
+        }
+        else if(index == (points.length -1)){
+          p5Instance.curveVertex(points[index].x, points[index].y);
+          p5Instance.curveVertex(points[index].x, points[index].y);
+        }
+        else{
+          p5Instance.curveVertex(points[index].x, points[index].y);
+        }
+        // index = index + 1;
+      }
+      p5Instance.endShape();
+    }
+    else{
+      points = [];
+    }
+  }
 
   p5Instance.draw = () => {
     strokeSize = (localStorage.getItem("brush-size"))/strokeWeightDevider;
@@ -45,13 +75,11 @@ const p5Instance = new p5(p5Instance => {
 
       console.log(point);
 
-      var data = { 
-        x: point.x,
-        y: point.y,
-        brushColor: strokeColor,
-        isFingerTouched : true
-      }
-      socket.emit('mouse', data);
+      // var data = { 
+      //   x: point.x,
+      //   y: point.y
+      // }
+      // socket.emit('mouse', data)
   
       p5Instance.strokeWeight(strokeSize + 3);
       p5Instance.beginShape();
@@ -72,10 +100,6 @@ const p5Instance = new p5(p5Instance => {
       p5Instance.endShape();
     }
     else{
-      var data = { 
-        isFingerTouched
-      }
-      socket.emit('mouse', data);
       points = [];
     }
   }
