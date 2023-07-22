@@ -48,6 +48,7 @@ const p5Instance = new p5(p5Instance => {
       var data = { 
         x: point.x,
         y: point.y,
+        brushType: 'brush-one',
         brushColor: strokeColor,
         isFingerTouched : true
       }
@@ -73,6 +74,7 @@ const p5Instance = new p5(p5Instance => {
     }
     else{
       var data = { 
+        brushType: 'brush-one',
         isFingerTouched
       }
       socket.emit('mouse', data);
@@ -84,6 +86,15 @@ const p5Instance = new p5(p5Instance => {
     if(p5Instance.mouseIsPressed){
       let point = { x: p5Instance.mouseX, y: p5Instance.mouseY }
       points.push(point);
+
+      var data = { 
+        x: point.x,
+        y: point.y,
+        brushType: 'brush-two',
+        brushColor: strokeColor,
+        isFingerTouched : true
+      }
+      socket.emit('mouse', data);
   
       p5Instance.strokeWeight(strokeSize);
       p5Instance.beginShape();
@@ -103,10 +114,28 @@ const p5Instance = new p5(p5Instance => {
       }
       p5Instance.endShape();
     }
+    else{
+      var data = { 
+        brushType: 'brush-two',
+        isFingerTouched
+      }
+      socket.emit('mouse', data);
+    }
   }
 
   function eraseSketch(){
     if(p5Instance.mouseIsPressed){
+      var data = { 
+        x: p5Instance.mouseX,
+        y: p5Instance.mouseY,
+        x2: p5Instance.pmouseX,
+        y2: p5Instance.pmouseY,
+        brushType: 'eraser',
+        brushColor: backgroundColor,
+        isFingerTouched : true
+      }
+      socket.emit('mouse', data);
+
       p5Instance.strokeWeight(40);
       p5Instance.stroke(backgroundColor);
       p5Instance.line(p5Instance.mouseX, p5Instance.mouseY, p5Instance.pmouseX, p5Instance.pmouseY);

@@ -22,33 +22,135 @@ const p5Instance = new p5(p5Instance => {
 
   function newDrawing(clientData) {
     console.log('calling');
-    
-    if(clientData.isFingerTouched == true){
-      points.push(clientData);
+    switch (clientData.brushType) {
+      case 'brush-one':
+        if(clientData.isFingerTouched == true){
+          points.push(clientData);
 
-      p5Instance.stroke(clientData.brushColor);
-      p5Instance.strokeWeight(strokeSize + 3);
-      
-      p5Instance.beginShape();
-      for (let index = 0; index < points.length; index++) {
-        if(index == 0){
-          p5Instance.curveVertex(points[index].x, points[index].y);
-          p5Instance.curveVertex(points[index].x, points[index].y);
-        }
-        else if(index == (points.length -1)){
-          p5Instance.curveVertex(points[index].x, points[index].y);
-          p5Instance.curveVertex(points[index].x, points[index].y);
+          p5Instance.stroke(clientData.brushColor);
+          p5Instance.strokeWeight(strokeSize + 3);
+          
+          p5Instance.beginShape();
+          for (let index = 0; index < points.length; index++) {
+            if(index == 0){
+              p5Instance.curveVertex(points[index].x, points[index].y);
+              p5Instance.curveVertex(points[index].x, points[index].y);
+            }
+            else if(index == (points.length -1)){
+              p5Instance.curveVertex(points[index].x, points[index].y);
+              p5Instance.curveVertex(points[index].x, points[index].y);
+            }
+            else{
+              p5Instance.curveVertex(points[index].x, points[index].y);
+            }
+            // index = index + 1;
+          }
+          p5Instance.endShape();
         }
         else{
-          p5Instance.curveVertex(points[index].x, points[index].y);
+          console.log('else')
+          points = [];  
         }
-        // index = index + 1;
-      }
-      p5Instance.endShape();
+        break;
+    
+      case 'brush-two':
+        if(clientData.isFingerTouched == true){
+          points.push(clientData);
+          p5Instance.strokeWeight(strokeSize);
+          p5Instance.beginShape();
+          for (let index = 0; index < points.length; index++) {
+            if(index == 0){
+              p5Instance.curveVertex(points[index].x, points[index].y);
+              p5Instance.curveVertex(points[index].x, points[index].y);
+            }
+            else if(index == (points.length -1)){
+              p5Instance.curveVertex(points[index].x, points[index].y);
+              p5Instance.curveVertex(points[index].x, points[index].y);
+            }
+            else{
+              p5Instance.curveVertex(points[index].x, points[index].y);
+            }
+            // index = index + 1;
+          }
+          p5Instance.endShape();
+        }
+        break;
+
+      case 'eraser':
+        if(clientData.isFingerTouched == true){
+          p5Instance.strokeWeight(40);
+          p5Instance.stroke(clientData.brushColor);
+          p5Instance.line(clientData.x, clientData.y, clientData.x2, clientData.y2);
+        }
+        break;
+ 
+      default:
+        break;
     }
-    else{
-      points = [];
-    }
+    // if(clientData.brushType == 'brush-one' && clientData.isFingerTouched == true){
+    //   if(clientData.isFingerTouched == true){
+    //     points.push(clientData);
+
+    //     p5Instance.stroke(clientData.brushColor);
+    //     p5Instance.strokeWeight(strokeSize + 3);
+        
+    //     p5Instance.beginShape();
+    //     for (let index = 0; index < points.length; index++) {
+    //       if(index == 0){
+    //         p5Instance.curveVertex(points[index].x, points[index].y);
+    //         p5Instance.curveVertex(points[index].x, points[index].y);
+    //       }
+    //       else if(index == (points.length -1)){
+    //         p5Instance.curveVertex(points[index].x, points[index].y);
+    //         p5Instance.curveVertex(points[index].x, points[index].y);
+    //       }
+    //       else{
+    //         p5Instance.curveVertex(points[index].x, points[index].y);
+    //       }
+    //       // index = index + 1;
+    //     }
+    //     p5Instance.endShape();
+    //   }
+    //   else{
+    //     console.log('else')
+    //     points = [];  
+    //   }
+    // }
+    // else{
+    //   // console.log('else')
+    //   // points = [];
+    // }
+
+    // if(clientData.brushType == 'brush-two' && clientData.isFingerTouched == true){
+    //   console.log('brush-two')
+    //   points.push(clientData);
+  
+    //   p5Instance.strokeWeight(strokeSize);
+    //   p5Instance.beginShape();
+    //   for (let index = 0; index < points.length; index++) {
+    //     if(index == 0){
+    //       p5Instance.curveVertex(points[index].x, points[index].y);
+    //       p5Instance.curveVertex(points[index].x, points[index].y);
+    //     }
+    //     else if(index == (points.length -1)){
+    //       p5Instance.curveVertex(points[index].x, points[index].y);
+    //       p5Instance.curveVertex(points[index].x, points[index].y);
+    //     }
+    //     else{
+    //       p5Instance.curveVertex(points[index].x, points[index].y);
+    //     }
+    //     // index = index + 1;
+    //   }
+    //   p5Instance.endShape();
+    // }
+
+    // if(clientData.brushType == 'eraser'){
+    //   if(clientData.isFingerTouched == true){
+    //     p5Instance.strokeWeight(40);
+    //     p5Instance.stroke(clientData.brushColor);
+    //     p5Instance.line(clientData.x, clientData.y, clientData.x2, clientData.y2);
+    //   }
+    // }
   }
 
   p5Instance.draw = () => {
