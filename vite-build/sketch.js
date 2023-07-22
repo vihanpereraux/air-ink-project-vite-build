@@ -50,11 +50,12 @@ const p5Instance = new p5(p5Instance => {
         y: point.y,
         brushType: 'brush-one',
         brushColor: strokeColor,
+        brushSize: strokeSize,
         isFingerTouched : true
       }
       socket.emit('mouse', data);
   
-      p5Instance.strokeWeight(strokeSize + 3);
+      p5Instance.strokeWeight(strokeSize);
       p5Instance.beginShape();
       for (let index = 0; index < points.length; index++) {
         if(index == 0){
@@ -92,6 +93,7 @@ const p5Instance = new p5(p5Instance => {
         y: point.y,
         brushType: 'brush-two',
         brushColor: strokeColor,
+        brushSize: strokeSize,
         isFingerTouched : true
       }
       socket.emit('mouse', data);
@@ -143,7 +145,14 @@ const p5Instance = new p5(p5Instance => {
   }
 
   clear.addEventListener('click', function(){
-    p5Instance.clear();
+    var data = { 
+      clearCanvas: true,
+      isFingerTouched : true
+    }
+    socket.emit('mouse', data);
+    
+    points = [];
+    console.log(points.length);
     p5Instance.background(backgroundColor);
   });
 });
