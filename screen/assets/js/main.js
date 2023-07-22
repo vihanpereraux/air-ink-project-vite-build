@@ -1,7 +1,3 @@
-import hexRgb from 'hex-rgb';
-import { FcCancel } from "react-icons/fc";
-
-
 let icons = [];
 let brushTypes;
 let brushColors;
