@@ -16,7 +16,7 @@ const p5Instance = new p5(p5Instance => {
     p5Instance.createCanvas(canvasWidth, canvasHeight);
     p5Instance.background(backgroundColor);
     
-    socket = io.connect('http://localhost:3000');
+    socket = io.connect('https://air-ink-server.onrender.com/');
     socket.on('mouse', newDrawing);
   };
 
