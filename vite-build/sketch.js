@@ -1,7 +1,7 @@
 import p5 from "p5";
 // import socket from "socket.io";
 
-let backgroundColor = 20;
+let backgroundColor = 220;
 let canvasWidth = window.innerWidth;
 let canvasHeight = window.innerHeight;
 let strokeSize;
@@ -10,18 +10,41 @@ let strokeWeightDevider= 10;
 let points = [];
 let clear = document.getElementById('clear');
 let isFingerTouched = false;
+var socket;
+let brushImage01;
+let imageWidth = 40;
+let imageHeight = 40;
 
-var socket
+  
 const p5Instance = new p5(p5Instance => {
+  p5Instance.preload = () => {
+    brushImage01 = p5Instance.loadImage('https://i.ibb.co/NFsL5ng/brush-01-bnw.png');
+    console.log(brushImage01);
+  }
+
   p5Instance.setup = () => {
     p5Instance.createCanvas(canvasWidth, canvasHeight);
     p5Instance.background(backgroundColor);
-    
+    p5Instance.angleMode(p5Instance.DEEGREES);
+
     socket = io.connect('https://air-ink-server.onrender.com/');
     // socket.on('mouse', newDrawing);
   };
 
   p5Instance.draw = () => {
+    // p5Instance.filter(p5Instance.THRESHOLD);
+    if(p5Instance.mouseIsPressed){
+      p5Instance.translate((0 - imageWidth)/2, (0 - imageHeight)/2);
+      p5Instance.rotate(p5Instance.random(0.001, 0.005));
+      p5Instance.image(
+        brushImage01, 
+        p5Instance.mouseX, 
+        p5Instance.mouseY, 
+        imageWidth, 
+        imageHeight
+      );
+    }
+
     strokeSize = (localStorage.getItem("brush-size"))/strokeWeightDevider;
     strokeColor = localStorage.getItem("brush-color");
     p5Instance.noFill();
