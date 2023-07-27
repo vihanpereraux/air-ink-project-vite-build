@@ -7,13 +7,16 @@ let clear;
 
 // control panel layout
 icons = [
-['https://img.icons8.com/sf-regular-filled/48/paint.png', 'brush 01', '42'],
-['https://img.icons8.com/ios-filled/50/pencil-tip.png', 'brush 02', '32'],
-['https://img.icons8.com/ios-filled/50/splash.png', 'brush 03', '30'],
-['https://img.icons8.com/ios-glyphs/30/deodorant-spray.png', 'brush 04', '30']]
+['https://img.icons8.com/sf-regular-filled/48/paint.png', 'brush 01', '38'],
+['https://i.ibb.co/wBvm5nz/drawing-bush-02.png', 'brush 02', '32'],
+['https://i.ibb.co/cbrKTR8/drawing-bush-03.png', 'brush 03', '30'],
+['https://i.ibb.co/bRd93VQ/drawing-bush-04.png', 'brush 04', '30'],
+['https://i.ibb.co/4Md0J2Z/drawing-bush-05.png', 'brush 05', '30'],
+['https://i.ibb.co/B4B3pB9/drawing-bush-06.png', 'brush 06', '30'],
+['https://i.ibb.co/tCTLz3G/drawing-bush-07.png', 'brush 07', '30']]
 
 brushTypes = document.getElementById('brush-types');
-for (let index = 0; index < 4; index++) {
+for (let index = 0; index < 7; index++) {
     brushTypes.innerHTML += `
     <div class="brush-type">
         <img width="${ icons[index][2] }" height="${ icons[index][2] }" class="logo" src="${ icons[index][0] }" alt="">
@@ -36,7 +39,7 @@ brushSizes = document.getElementById('brush-sizes');
 brushSizes.innerHTML = `
     <div class="brush-size">
         <p class="name">Brush size</p>
-        <input id="brush-size" type="range" min="1" max="100" value="30">
+        <input id="brush-size" type="range" min="1" max="100" value="10">
     </div>
 `;
 
@@ -88,12 +91,27 @@ for (let index = 0; index < getBrushTypes.length; index++) {
             
             case 2:
                 setbrushStatus();
-                localStorage.setItem("brush-type-02", "enabled");
+                localStorage.setItem("brush-type-03", "enabled");
                 break;
 
             case 3:
                 setbrushStatus();
-                localStorage.setItem("brush-type-03", "enabled");
+                localStorage.setItem("brush-type-04", "enabled");
+                break;
+
+            case 4:
+                setbrushStatus();
+                localStorage.setItem("brush-type-05", "enabled");
+                break;
+
+            case 5:
+                setbrushStatus();
+                localStorage.setItem("brush-type-06", "enabled");
+                break;
+
+            case 6:
+                setbrushStatus();
+                localStorage.setItem("brush-type-07", "enabled");
                 break;
 
             default:
@@ -112,7 +130,7 @@ clear.addEventListener('click', function(){
 })
 
 function setbrushStatus(){
-    for (let index = 0; index < 4; index++) {
+    for (let index = 0; index < 7; index++) {
         localStorage.setItem("brush-type-0" + String(index+1), "disabled");  
     };
     localStorage.setItem("eraser", "disabled");
@@ -121,7 +139,7 @@ function setbrushStatus(){
 // brush color
 customColorPicker = document.getElementsByClassName('custom-color-picker');
 brushColorValue = document.getElementById('brush-color-value');
-localStorage.setItem("brush-color", "ffffff");
+localStorage.setItem("brush-color", "000000");
 
 brushColorValue.addEventListener('input', function(){
     customColorPicker[0].style.background = brushColorValue.value;
@@ -129,7 +147,7 @@ brushColorValue.addEventListener('input', function(){
 });
 
 // brush size
-localStorage.setItem("brush-size", 3);
+localStorage.setItem("brush-size", 10);
 brushSize = document.getElementById('brush-size');
 brushSize.addEventListener('input', function(){
     localStorage.setItem("brush-size", brushSize.value);
