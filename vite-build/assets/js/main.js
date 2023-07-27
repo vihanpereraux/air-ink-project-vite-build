@@ -139,7 +139,7 @@ function setbrushStatus(){
 // brush color
 customColorPicker = document.getElementsByClassName('custom-color-picker');
 brushColorValue = document.getElementById('brush-color-value');
-localStorage.setItem("brush-color", "000000");
+localStorage.setItem("brush-color", "#000000");
 
 brushColorValue.addEventListener('input', function(){
     customColorPicker[0].style.background = brushColorValue.value;

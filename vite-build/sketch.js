@@ -6,7 +6,7 @@ let canvasWidth = window.innerWidth;
 let canvasHeight = window.innerHeight;
 let strokeSize;
 let strokeColor;
-let strokeWeightDevider= 10;
+let strokeWeightDevider= 1;
 let points = [];
 let clear = document.getElementById('clear');
 let isFingerTouched = false;
@@ -18,8 +18,8 @@ let brushImage04;
 let brushImage05;
 let brushImage06;
 let brushImage07;
-let imageWidth = 30;
-let imageHeight = 30;
+let imageWidth;
+let imageHeight;;
 
   
 const p5Instance = new p5(p5Instance => {
@@ -28,8 +28,8 @@ const p5Instance = new p5(p5Instance => {
     brushImage03 = p5Instance.loadImage('https://i.ibb.co/cbrKTR8/drawing-bush-03.png');
     brushImage04 = p5Instance.loadImage('https://i.ibb.co/bRd93VQ/drawing-bush-04.png');
     brushImage05 = p5Instance.loadImage('https://i.ibb.co/4Md0J2Z/drawing-bush-05.png');
-    brushImage06 = p5Instance.loadImage('https://i.ibb.co/cbrKTR8/drawing-bush-03.png');
-    brushImage07 = p5Instance.loadImage('https://i.ibb.co/cbrKTR8/drawing-bush-03.png');
+    brushImage06 = p5Instance.loadImage('https://i.ibb.co/B4B3pB9/drawing-bush-06.png');
+    brushImage07 = p5Instance.loadImage('https://i.ibb.co/tCTLz3G/drawing-bush-07.png');
     // console.log(brushImage01);
   }
 
@@ -43,20 +43,9 @@ const p5Instance = new p5(p5Instance => {
   };
 
   p5Instance.draw = () => {
-    // p5Instance.filter(p5Instance.THRESHOLD);
-    // if(p5Instance.mouseIsPressed){
-    //   p5Instance.translate((0 - imageWidth)/2, (0 - imageHeight)/2);
-    //   p5Instance.rotate(p5Instance.random(0.001, 0.005));
-    //   p5Instance.image(
-    //     brushImage02, 
-    //     p5Instance.mouseX, 
-    //     p5Instance.mouseY, 
-    //     imageWidth, 
-    //     imageHeight
-    //   );
-    // }
-
     strokeSize = (localStorage.getItem("brush-size"))/strokeWeightDevider;
+    imageWidth = strokeSize;
+    imageHeight = strokeSize;
     strokeColor = localStorage.getItem("brush-color");
     p5Instance.noFill();
     p5Instance.stroke(strokeColor);
@@ -66,6 +55,21 @@ const p5Instance = new p5(p5Instance => {
     }
     if(localStorage.getItem("brush-type-02") == "enabled"){
       drawfromBrush02();
+    }
+    if(localStorage.getItem("brush-type-03") == "enabled"){
+      drawfromBrush03();
+    }
+    if(localStorage.getItem("brush-type-04") == "enabled"){
+      drawfromBrush04();
+    }
+    if(localStorage.getItem("brush-type-05") == "enabled"){
+      drawfromBrush05();
+    }
+    if(localStorage.getItem("brush-type-06") == "enabled"){
+      drawfromBrush06();
+    }
+    if(localStorage.getItem("brush-type-07") == "enabled"){
+      drawfromBrush07();
     }
     if(localStorage.getItem("eraser") == "enabled"){
       eraseSketch();
@@ -118,50 +122,81 @@ const p5Instance = new p5(p5Instance => {
   }
 
   function drawfromBrush02(){
-    // if(p5Instance.mouseIsPressed){
-    //   let point = { x: p5Instance.mouseX, y: p5Instance.mouseY }
-    //   points.push(point);
-
-    //   var data = { 
-    //     x: point.x,
-    //     y: point.y,
-    //     brushType: 'brush-two',
-    //     brushColor: strokeColor,
-    //     brushSize: strokeSize,
-    //     isFingerTouched : true
-    //   }
-    //   socket.emit('mouse', data);
-  
-    //   p5Instance.strokeWeight(strokeSize);
-    //   p5Instance.beginShape();
-    //   for (let index = 0; index < points.length; index++) {
-    //     if(index == 0){
-    //       p5Instance.curveVertex(points[index].x, points[index].y);
-    //       p5Instance.curveVertex(points[index].x, points[index].y);
-    //     }
-    //     else if(index == (points.length -1)){
-    //       p5Instance.curveVertex(points[index].x, points[index].y);
-    //       p5Instance.curveVertex(points[index].x, points[index].y);
-    //     }
-    //     else{
-    //       p5Instance.curveVertex(points[index].x, points[index].y);
-    //     }
-    //     // index = index + 1;
-    //   }
-    //   p5Instance.endShape();
-    // }
-    // else{
-    //   var data = { 
-    //     brushType: 'brush-two',
-    //     isFingerTouched
-    //   }
-    //   socket.emit('mouse', data);
-    // }
     if(p5Instance.mouseIsPressed){
       p5Instance.translate((0 - imageWidth)/2, (0 - imageHeight)/2);
       p5Instance.rotate(p5Instance.random(0.001, 0.005));
       p5Instance.image(
         brushImage02, 
+        p5Instance.mouseX, 
+        p5Instance.mouseY, 
+        imageWidth, 
+        imageHeight
+      );
+    }
+  }
+
+  function drawfromBrush03(){
+    if(p5Instance.mouseIsPressed){
+      p5Instance.translate((0 - imageWidth)/2, (0 - imageHeight)/2);
+      p5Instance.rotate(p5Instance.random(0.001, 0.005));
+      p5Instance.image(
+        brushImage03, 
+        p5Instance.mouseX, 
+        p5Instance.mouseY, 
+        imageWidth, 
+        imageHeight
+      );
+    }
+  }
+
+  function drawfromBrush04(){
+    if(p5Instance.mouseIsPressed){
+      p5Instance.translate((0 - imageWidth)/2, (0 - imageHeight)/2);
+      p5Instance.rotate(p5Instance.random(0.001, 0.005));
+      p5Instance.image(
+        brushImage04, 
+        p5Instance.mouseX, 
+        p5Instance.mouseY, 
+        imageWidth, 
+        imageHeight
+      );
+    }
+  }
+
+  function drawfromBrush05(){
+    if(p5Instance.mouseIsPressed){
+      p5Instance.translate((0 - imageWidth)/2, (0 - imageHeight)/2);
+      p5Instance.rotate(p5Instance.random(0.001, 0.005));
+      p5Instance.image(
+        brushImage05, 
+        p5Instance.mouseX, 
+        p5Instance.mouseY, 
+        imageWidth, 
+        imageHeight
+      );
+    }
+  }
+
+  function drawfromBrush06(){
+    if(p5Instance.mouseIsPressed){
+      p5Instance.translate((0 - imageWidth)/2, (0 - imageHeight)/2);
+      p5Instance.rotate(p5Instance.random(0.001, 0.005));
+      p5Instance.image(
+        brushImage06, 
+        p5Instance.mouseX, 
+        p5Instance.mouseY, 
+        imageWidth, 
+        imageHeight
+      );
+    }
+  }
+
+  function drawfromBrush07(){
+    if(p5Instance.mouseIsPressed){
+      p5Instance.translate((0 - imageWidth)/2, (0 - imageHeight)/2);
+      p5Instance.rotate(p5Instance.random(0.001, 0.005));
+      p5Instance.image(
+        brushImage07, 
         p5Instance.mouseX, 
         p5Instance.mouseY, 
         imageWidth, 
@@ -183,7 +218,7 @@ const p5Instance = new p5(p5Instance => {
       }
       socket.emit('mouse', data);
 
-      p5Instance.strokeWeight(40);
+      p5Instance.strokeWeight(strokeSize);
       p5Instance.stroke(backgroundColor);
       p5Instance.line(p5Instance.mouseX, p5Instance.mouseY, p5Instance.pmouseX, p5Instance.pmouseY);
     }
