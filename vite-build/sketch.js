@@ -302,21 +302,12 @@ const p5Instance = new p5(p5Instance => {
   }
 
   download.addEventListener('click', function(){
-    console.log('downloaded')
-    p5Instance.saveCanvas(
-      ('air-ink-canvas-' + 
-      String(p5Instance.round(p5Instance.random(0, 10000)))), 
-      'jpg');
+    var data = { 
+      donwloadCanvas: true,
+      isFingerTouched : true
+    }
+    socket.emit('mouse', data);
   })
-  // p5Instance.keyTyped = () => {
-  //   if(p5Instance.key === 's' || p5Instance.key === 'S'){
-  //     p5Instance.saveCanvas(
-  //       ('air-ink-canvas-' + 
-  //       String(p5Instance.round(p5Instance.random(0, 10000)))), 
-  //       'jpg');
-  //     console.log('s pressed')
-  //   }
-  // }
 
   clear.addEventListener('click', function(){
     var data = { 

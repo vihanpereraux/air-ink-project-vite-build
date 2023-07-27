@@ -20,6 +20,7 @@ let imageWidth = 40;
 let imageHeight = 40;
 
 var socket
+
 const p5Instance = new p5(p5Instance => {
   p5Instance.preload = () => {
     brushImage02 = p5Instance.loadImage('https://i.ibb.co/wBvm5nz/drawing-bush-02.png');
@@ -177,10 +178,20 @@ const p5Instance = new p5(p5Instance => {
       default:
         break;
     }
+
     if(clientData.clearCanvas){
       points = [];
       p5Instance.clear();
       p5Instance.background(backgroundColor);  
+    }
+
+    if(clientData.donwloadCanvas){
+      console.log('dowwnloaded')
+      p5Instance.saveCanvas(
+        ('air-ink-canvas-' + 
+        String(p5Instance.round(p5Instance.random(0, 10000)))), 
+        'jpg'
+      );
     }
   }
 

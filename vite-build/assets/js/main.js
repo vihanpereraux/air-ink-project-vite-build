@@ -9,12 +9,12 @@ let download;
 // control panel layout
 icons = [
 ['https://i.ibb.co/7zKjHz3/drawing-bush-01.png', 'brush 01', '25'],
-['https://i.ibb.co/wBvm5nz/drawing-bush-02.png', 'brush 02', '32'],
-['https://i.ibb.co/cbrKTR8/drawing-bush-03.png', 'brush 03', '30'],
-['https://i.ibb.co/bRd93VQ/drawing-bush-04.png', 'brush 04', '30'],
-['https://i.ibb.co/4Md0J2Z/drawing-bush-05.png', 'brush 05', '30'],
-['https://i.ibb.co/B4B3pB9/drawing-bush-06.png', 'brush 06', '30'],
-['https://i.ibb.co/tCTLz3G/drawing-bush-07.png', 'brush 07', '30']]
+['https://i.ibb.co/wBvm5nz/drawing-bush-02.png', 'brush 01', '32'],
+['https://i.ibb.co/cbrKTR8/drawing-bush-03.png', 'brush 02', '30'],
+['https://i.ibb.co/bRd93VQ/drawing-bush-04.png', 'brush 03', '30'],
+['https://i.ibb.co/4Md0J2Z/drawing-bush-05.png', 'brush 04', '30'],
+['https://i.ibb.co/B4B3pB9/drawing-bush-06.png', 'brush 05', '30'],
+['https://i.ibb.co/tCTLz3G/drawing-bush-07.png', 'brush 06', '30']]
 
 brushTypes = document.getElementById('brush-types');
 for (let index = 0; index < 7; index++) {

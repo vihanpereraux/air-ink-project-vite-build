@@ -220,6 +220,7 @@ canvas{
 }
 
 #control-panel #download{
+	cursor: pointer;
 	width: 60px;
 	height: 60px;
 	background: none;
@@ -240,3 +241,7 @@ canvas{
 	color: blue !important;
 }
 /* end of control panel stylings */
+
+.brush-type:first-child{
+	display: none !important;
+}
