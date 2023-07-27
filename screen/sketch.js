@@ -39,8 +39,8 @@ const p5Instance = new p5(p5Instance => {
     p5Instance.angleMode(p5Instance.DEEGREES);
     console.log(canvasWidth, canvasHeight)
     
-    // socket = io.connect('https://air-ink-server.onrender.com/');
-    socket = io.connect('http://localhost:3000/');
+    socket = io.connect('https://air-ink-server.onrender.com/');
+    // socket = io.connect('http://localhost:3000/');
     socket.on('mouse', newDrawing);
   };
 
