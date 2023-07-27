@@ -23,6 +23,7 @@ html, body {
 
 /* top bar stylings */
 #top-bar{
+	display: none;
 	background: none;
 	position: absolute;
 	top: 2%;
@@ -59,7 +60,8 @@ canvas{
 /* control panel stylings */
 #control-panel{
 	display: flex;
-	background: rgb(240, 240, 240);
+	background: white;
+	box-shadow: 1px 1px 30px 10px rgba(0, 0, 0, 0.03);
 	position: absolute;
 	width: auto;
 	overflow-x: auto;
@@ -80,7 +82,7 @@ canvas{
 	width: 1px;
 	height: 60px;
 	background: black;
-	opacity: .3;
+	opacity: .2;
 	margin-left: 12px;
 	margin-right: 12px;
 }

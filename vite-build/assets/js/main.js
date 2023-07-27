@@ -7,7 +7,7 @@ let clear;
 
 // control panel layout
 icons = [
-['https://img.icons8.com/sf-regular-filled/48/paint.png', 'brush 01', '38'],
+['https://i.ibb.co/7zKjHz3/drawing-bush-01.png', 'brush 01', '25'],
 ['https://i.ibb.co/wBvm5nz/drawing-bush-02.png', 'brush 02', '32'],
 ['https://i.ibb.co/cbrKTR8/drawing-bush-03.png', 'brush 03', '30'],
 ['https://i.ibb.co/bRd93VQ/drawing-bush-04.png', 'brush 04', '30'],
@@ -26,14 +26,14 @@ for (let index = 0; index < 7; index++) {
 };
 
 brushColors = document.getElementById('brush-colors');
-brushColors.innerHTML = `
-    <div class="brush-color">
-        <div class="custom-color-picker" id="custom-brush-color-picker">
-            <input type="color" class="color-value" id="brush-color-value" name="favcolor" value="#ff0000">
-        </div>
-        <p id="lol" class="name">color</p>
-    </div>
-`;
+// brushColors.innerHTML = `
+//     <div class="brush-color">
+//         <div class="custom-color-picker" id="custom-brush-color-picker">
+//             <input type="color" class="color-value" id="brush-color-value" name="favcolor" value="#ff0000">
+//         </div>
+//         <p id="lol" class="name">color</p>
+//     </div>
+// `;
 
 brushSizes = document.getElementById('brush-sizes');
 brushSizes.innerHTML = `
@@ -46,8 +46,8 @@ brushSizes.innerHTML = `
 eraser = document.getElementById('eraser');
 eraser.innerHTML = `
     <img 
-        width="32" 
-        height="32" 
+        width="28" 
+        height="28" 
         src="https://img.icons8.com/external-vitaliy-gorbachev-fill-vitaly-gorbachev/60/external-eraser-back-to-school-vitaliy-gorbachev-fill-vitaly-gorbachev.png"
         alt="external-eraser-back-to-school-vitaliy-gorbachev-fill-vitaly-gorbachev"/>
     <p class="name">Eraser</p>
@@ -56,8 +56,8 @@ eraser.innerHTML = `
 clear = document.getElementById('clear');
 clear.innerHTML = `
     <img 
-        width="37" 
-        height="37" 
+        width="33" 
+        height="33" 
         src="https://img.icons8.com/fluency/48/cancel.png" 
         alt="cancel"/>
     <p class="name">clear</p>
@@ -77,7 +77,6 @@ getBrushTypes = document.getElementsByClassName('brush-type');
 // event listners for brushes
 for (let index = 0; index < getBrushTypes.length; index++) {
     getBrushTypes[index].addEventListener('click', function(){
-        console.log(index);
         switch (index) {
             case 0:
                 setbrushStatus();
@@ -141,10 +140,10 @@ customColorPicker = document.getElementsByClassName('custom-color-picker');
 brushColorValue = document.getElementById('brush-color-value');
 localStorage.setItem("brush-color", "#000000");
 
-brushColorValue.addEventListener('input', function(){
-    customColorPicker[0].style.background = brushColorValue.value;
-    localStorage.setItem("brush-color", brushColorValue.value);
-});
+// brushColorValue.addEventListener('input', function(){
+//     customColorPicker[0].style.background = brushColorValue.value;
+//     localStorage.setItem("brush-color", brushColorValue.value);
+// });
 
 // brush size
 localStorage.setItem("brush-size", 10);

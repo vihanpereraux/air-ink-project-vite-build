@@ -3,7 +3,7 @@ import p5 from "p5";
 
 let backgroundColor = 255;
 let canvasWidth = window.innerWidth;
-let canvasHeight = window.innerHeight;
+let canvasHeight = window.innerHeight - 110;
 let strokeSize;
 let strokeColor;
 let strokeWeightDevider= 1;
@@ -35,6 +35,7 @@ const p5Instance = new p5(p5Instance => {
 
   p5Instance.setup = () => {
     p5Instance.createCanvas(canvasWidth, canvasHeight);
+    p5Instance.pixelDensity(5);
     p5Instance.background(backgroundColor);
     p5Instance.angleMode(p5Instance.DEEGREES);
 
@@ -224,6 +225,13 @@ const p5Instance = new p5(p5Instance => {
     }
   }
 
+  p5Instance.keyTyped = () => {
+    if(p5Instance.key === 's' || p5Instance.key === 'S'){
+      p5Instance.saveCanvas('air-ink-canvas', 'jpg');
+      console.log('s pressed')
+    }
+  }
+
   clear.addEventListener('click', function(){
     var data = { 
       clearCanvas: true,
@@ -232,7 +240,6 @@ const p5Instance = new p5(p5Instance => {
     socket.emit('mouse', data);
     
     points = [];
-    console.log(points.length);
     p5Instance.background(backgroundColor);
   });
 });
