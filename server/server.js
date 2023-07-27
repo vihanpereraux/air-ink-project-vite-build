@@ -26,6 +26,7 @@
 
 var express = require('express');
 var app = express();
+app.use(express.static('public'));
 var http = require('http').createServer(app);
 var socketIO = require('socket.io')(http, {
     cors: {
