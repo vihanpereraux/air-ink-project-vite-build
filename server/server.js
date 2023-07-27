@@ -26,7 +26,6 @@
 
 var express = require('express');
 var app = express();
-app.use(express.static('public'));
 var http = require('http').createServer(app);
 var socketIO = require('socket.io')(http, {
     cors: {
@@ -36,7 +35,13 @@ var socketIO = require('socket.io')(http, {
 
 http.listen(3000, function(){
     console.log("socket server is running");
-    socketIO.on("connection", function(socket){
+    socketIO.on('connection', function(socket){
+        socket.on('mouse', function(clientData){
+            socket.broadcast.emit('mouse', clientData);
+            console.log(clientData);
+        });
         console.log('new connection ' + socket.id);
     });
 });
+
+app.use(express.static('public'));

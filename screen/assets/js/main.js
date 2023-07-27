@@ -4,16 +4,20 @@ let brushColors;
 let brushSizes;
 let eraser;
 let clear;
+let download;
 
 // control panel layout
 icons = [
-['https://img.icons8.com/sf-regular-filled/48/paint.png', 'brush 01', '42'],
-['https://img.icons8.com/ios-filled/50/pencil-tip.png', 'brush 02', '32'],
-['https://img.icons8.com/ios-filled/50/splash.png', 'brush 03', '30'],
-['https://img.icons8.com/ios-glyphs/30/deodorant-spray.png', 'brush 04', '30']]
+['https://i.ibb.co/7zKjHz3/drawing-bush-01.png', 'brush 01', '25'],
+['https://i.ibb.co/wBvm5nz/drawing-bush-02.png', 'brush 02', '32'],
+['https://i.ibb.co/cbrKTR8/drawing-bush-03.png', 'brush 03', '30'],
+['https://i.ibb.co/bRd93VQ/drawing-bush-04.png', 'brush 04', '30'],
+['https://i.ibb.co/4Md0J2Z/drawing-bush-05.png', 'brush 05', '30'],
+['https://i.ibb.co/B4B3pB9/drawing-bush-06.png', 'brush 06', '30'],
+['https://i.ibb.co/tCTLz3G/drawing-bush-07.png', 'brush 07', '30']]
 
 brushTypes = document.getElementById('brush-types');
-for (let index = 0; index < 4; index++) {
+for (let index = 0; index < 7; index++) {
     brushTypes.innerHTML += `
     <div class="brush-type">
         <img width="${ icons[index][2] }" height="${ icons[index][2] }" class="logo" src="${ icons[index][0] }" alt="">
@@ -23,28 +27,28 @@ for (let index = 0; index < 4; index++) {
 };
 
 brushColors = document.getElementById('brush-colors');
-brushColors.innerHTML = `
-    <div class="brush-color">
-        <div class="custom-color-picker" id="custom-brush-color-picker">
-            <input type="color" class="color-value" id="brush-color-value" name="favcolor" value="#ff0000">
-        </div>
-        <p id="lol" class="name">color</p>
-    </div>
-`;
+// brushColors.innerHTML = `
+//     <div class="brush-color">
+//         <div class="custom-color-picker" id="custom-brush-color-picker">
+//             <input type="color" class="color-value" id="brush-color-value" name="favcolor" value="#ff0000">
+//         </div>
+//         <p id="lol" class="name">color</p>
+//     </div>
+// `;
 
 brushSizes = document.getElementById('brush-sizes');
 brushSizes.innerHTML = `
     <div class="brush-size">
         <p class="name">Brush size</p>
-        <input id="brush-size" type="range" min="1" max="100" value="30">
+        <input id="brush-size" type="range" min="1" max="100" value="40">
     </div>
 `;
 
 eraser = document.getElementById('eraser');
 eraser.innerHTML = `
     <img 
-        width="32" 
-        height="32" 
+        width="28" 
+        height="28" 
         src="https://img.icons8.com/external-vitaliy-gorbachev-fill-vitaly-gorbachev/60/external-eraser-back-to-school-vitaliy-gorbachev-fill-vitaly-gorbachev.png"
         alt="external-eraser-back-to-school-vitaliy-gorbachev-fill-vitaly-gorbachev"/>
     <p class="name">Eraser</p>
@@ -53,13 +57,22 @@ eraser.innerHTML = `
 clear = document.getElementById('clear');
 clear.innerHTML = `
     <img 
-        width="37" 
-        height="37" 
+        width="33" 
+        height="33" 
         src="https://img.icons8.com/fluency/48/cancel.png" 
         alt="cancel"/>
     <p class="name">clear</p>
-`
+`;
 
+download = document.getElementById('download');
+download.innerHTML = `
+    <img 
+        width="33" 
+        height="33" 
+        src="https://img.icons8.com/pastel-glyph/64/download--v2.png" 
+        alt="download"/>
+    <p class="name">download</p>
+`;
 
 // control panel functions
 let brushColorValue;
@@ -74,26 +87,47 @@ getBrushTypes = document.getElementsByClassName('brush-type');
 // event listners for brushes
 for (let index = 0; index < getBrushTypes.length; index++) {
     getBrushTypes[index].addEventListener('click', function(){
-        console.log(index);
         switch (index) {
             case 0:
                 setbrushStatus();
+                addActiveClass(index);
                 localStorage.setItem("brush-type-01", "enabled");
                 break;
 
             case 1:
                 setbrushStatus();
+                addActiveClass(index);
                 localStorage.setItem("brush-type-02", "enabled");
                 break;
             
             case 2:
                 setbrushStatus();
-                localStorage.setItem("brush-type-02", "enabled");
+                addActiveClass(index);
+                localStorage.setItem("brush-type-03", "enabled");
                 break;
 
             case 3:
                 setbrushStatus();
-                localStorage.setItem("brush-type-03", "enabled");
+                addActiveClass(index);
+                localStorage.setItem("brush-type-04", "enabled");
+                break;
+
+            case 4:
+                setbrushStatus();
+                addActiveClass(index);
+                localStorage.setItem("brush-type-05", "enabled");
+                break;
+
+            case 5:
+                setbrushStatus();
+                addActiveClass(index);
+                localStorage.setItem("brush-type-06", "enabled");
+                break;
+
+            case 6:
+                setbrushStatus();
+                addActiveClass(index);
+                localStorage.setItem("brush-type-07", "enabled");
                 break;
 
             default:
@@ -101,6 +135,13 @@ for (let index = 0; index < getBrushTypes.length; index++) {
         }    
     })
 };
+function addActiveClass(index){
+    document.getElementById('eraser').classList.remove('active-brush');
+    for (let index = 0; index < getBrushTypes.length; index++) {
+        getBrushTypes[index].classList.remove('active-brush');
+    }
+    getBrushTypes[index].classList.add('active-brush');
+}
 // event listner for the eraser
 eraser.addEventListener('click', function(){
     setbrushStatus();
@@ -108,11 +149,10 @@ eraser.addEventListener('click', function(){
 });
 // event listner for the clear
 clear.addEventListener('click', function(){
-    
 })
 
 function setbrushStatus(){
-    for (let index = 0; index < 4; index++) {
+    for (let index = 0; index < 7; index++) {
         localStorage.setItem("brush-type-0" + String(index+1), "disabled");  
     };
     localStorage.setItem("eraser", "disabled");
@@ -121,15 +161,15 @@ function setbrushStatus(){
 // brush color
 customColorPicker = document.getElementsByClassName('custom-color-picker');
 brushColorValue = document.getElementById('brush-color-value');
-localStorage.setItem("brush-color", "ffffff");
+localStorage.setItem("brush-color", "#000000");
 
-brushColorValue.addEventListener('input', function(){
-    customColorPicker[0].style.background = brushColorValue.value;
-    localStorage.setItem("brush-color", brushColorValue.value);
-});
+// brushColorValue.addEventListener('input', function(){
+//     customColorPicker[0].style.background = brushColorValue.value;
+//     localStorage.setItem("brush-color", brushColorValue.value);
+// });
 
 // brush size
-localStorage.setItem("brush-size", 3);
+localStorage.setItem("brush-size", 40);
 brushSize = document.getElementById('brush-size');
 brushSize.addEventListener('input', function(){
     localStorage.setItem("brush-size", brushSize.value);

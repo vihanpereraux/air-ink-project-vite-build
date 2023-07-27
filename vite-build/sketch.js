@@ -3,7 +3,7 @@ import p5 from "p5";
 
 let backgroundColor = 255;
 let canvasWidth = window.innerWidth;
-let canvasHeight = window.innerHeight - 110;
+let canvasHeight = window.innerHeight - 120;
 let strokeSize;
 let strokeColor;
 let strokeWeightDevider= 1;
@@ -19,10 +19,11 @@ let brushImage05;
 let brushImage06;
 let brushImage07;
 let imageWidth;
-let imageHeight;;
+let imageHeight;
 let getBrushTypes = document.getElementsByClassName('brush-type');
 let download = document.getElementById('download');
-
+var translateX;
+var translateY;
   
 const p5Instance = new p5(p5Instance => {
   p5Instance.preload = () => {
@@ -131,8 +132,24 @@ const p5Instance = new p5(p5Instance => {
 
   function drawfromBrush02(){
     if(p5Instance.mouseIsPressed){
+      translateX = (0 - imageWidth)/2;
+      translateY = (0 - imageHeight)/2;
+
+      var data = { 
+        x: p5Instance.mouseX,
+        y: p5Instance.mouseY,
+        brushType: 'brush-two',
+        brushColor: strokeColor,
+        brushSize: strokeSize,
+        translateX: translateX,
+        translateY: translateY,
+        isFingerTouched : true
+      }
+      socket.emit('mouse', data);
+
+
       p5Instance.translate((0 - imageWidth)/2, (0 - imageHeight)/2);
-      p5Instance.rotate(p5Instance.random(0.001, 0.005));
+      // p5Instance.rotate(p5Instance.random(0.001, 0.005));
       p5Instance.image(
         brushImage02, 
         p5Instance.mouseX, 
@@ -145,8 +162,18 @@ const p5Instance = new p5(p5Instance => {
 
   function drawfromBrush03(){
     if(p5Instance.mouseIsPressed){
+      var data = { 
+        x: p5Instance.mouseX,
+        y: p5Instance.mouseY,
+        brushType: 'brush-three',
+        brushColor: strokeColor,
+        brushSize: strokeSize,
+        isFingerTouched : true
+      }
+      socket.emit('mouse', data);
+
       p5Instance.translate((0 - imageWidth)/2, (0 - imageHeight)/2);
-      p5Instance.rotate(p5Instance.random(0.001, 0.005));
+      // p5Instance.rotate(p5Instance.random(0.001, 0.005));
       p5Instance.image(
         brushImage03, 
         p5Instance.mouseX, 
@@ -159,8 +186,18 @@ const p5Instance = new p5(p5Instance => {
 
   function drawfromBrush04(){
     if(p5Instance.mouseIsPressed){
+      var data = { 
+        x: p5Instance.mouseX,
+        y: p5Instance.mouseY,
+        brushType: 'brush-four',
+        brushColor: strokeColor,
+        brushSize: strokeSize,
+        isFingerTouched : true
+      }
+      socket.emit('mouse', data);
+
       p5Instance.translate((0 - imageWidth)/2, (0 - imageHeight)/2);
-      p5Instance.rotate(p5Instance.random(0.001, 0.005));
+      // p5Instance.rotate(p5Instance.random(0.001, 0.005));
       p5Instance.image(
         brushImage04, 
         p5Instance.mouseX, 
@@ -173,8 +210,18 @@ const p5Instance = new p5(p5Instance => {
 
   function drawfromBrush05(){
     if(p5Instance.mouseIsPressed){
+      var data = { 
+        x: p5Instance.mouseX,
+        y: p5Instance.mouseY,
+        brushType: 'brush-five',
+        brushColor: strokeColor,
+        brushSize: strokeSize,
+        isFingerTouched : true
+      }
+      socket.emit('mouse', data);
+
       p5Instance.translate((0 - imageWidth)/2, (0 - imageHeight)/2);
-      p5Instance.rotate(p5Instance.random(0.001, 0.005));
+      // p5Instance.rotate(p5Instance.random(0.001, 0.005));
       p5Instance.image(
         brushImage05, 
         p5Instance.mouseX, 
@@ -187,8 +234,18 @@ const p5Instance = new p5(p5Instance => {
 
   function drawfromBrush06(){
     if(p5Instance.mouseIsPressed){
+      var data = { 
+        x: p5Instance.mouseX,
+        y: p5Instance.mouseY,
+        brushType: 'brush-six',
+        brushColor: strokeColor,
+        brushSize: strokeSize,
+        isFingerTouched : true
+      }
+      socket.emit('mouse', data);
+
       p5Instance.translate((0 - imageWidth)/2, (0 - imageHeight)/2);
-      p5Instance.rotate(p5Instance.random(0.001, 0.005));
+      // p5Instance.rotate(p5Instance.random(0.001, 0.005));
       p5Instance.image(
         brushImage06, 
         p5Instance.mouseX, 
@@ -201,8 +258,18 @@ const p5Instance = new p5(p5Instance => {
 
   function drawfromBrush07(){
     if(p5Instance.mouseIsPressed){
+      var data = { 
+        x: p5Instance.mouseX,
+        y: p5Instance.mouseY,
+        brushType: 'brush-seven',
+        brushColor: strokeColor,
+        brushSize: strokeSize,
+        isFingerTouched : true
+      }
+      socket.emit('mouse', data);
+
       p5Instance.translate((0 - imageWidth)/2, (0 - imageHeight)/2);
-      p5Instance.rotate(p5Instance.random(0.001, 0.005));
+      // p5Instance.rotate(p5Instance.random(0.001, 0.005));
       p5Instance.image(
         brushImage07, 
         p5Instance.mouseX, 
@@ -221,6 +288,7 @@ const p5Instance = new p5(p5Instance => {
         x2: p5Instance.pmouseX,
         y2: p5Instance.pmouseY,
         brushType: 'eraser',
+        brushSize: strokeSize,
         brushColor: backgroundColor,
         isFingerTouched : true
       }
@@ -232,7 +300,6 @@ const p5Instance = new p5(p5Instance => {
     }
   }
 
-
   download.addEventListener('click', function(){
     console.log('downloaded')
     p5Instance.saveCanvas(
@@ -240,15 +307,15 @@ const p5Instance = new p5(p5Instance => {
       String(p5Instance.round(p5Instance.random(0, 10000)))), 
       'jpg');
   })
-  p5Instance.keyTyped = () => {
-    if(p5Instance.key === 's' || p5Instance.key === 'S'){
-      p5Instance.saveCanvas(
-        ('air-ink-canvas-' + 
-        String(p5Instance.round(p5Instance.random(0, 10000)))), 
-        'jpg');
-      console.log('s pressed')
-    }
-  }
+  // p5Instance.keyTyped = () => {
+  //   if(p5Instance.key === 's' || p5Instance.key === 'S'){
+  //     p5Instance.saveCanvas(
+  //       ('air-ink-canvas-' + 
+  //       String(p5Instance.round(p5Instance.random(0, 10000)))), 
+  //       'jpg');
+  //     console.log('s pressed')
+  //   }
+  // }
 
   clear.addEventListener('click', function(){
     var data = { 
