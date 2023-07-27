@@ -21,6 +21,7 @@ let brushImage07;
 let imageWidth;
 let imageHeight;;
 let getBrushTypes = document.getElementsByClassName('brush-type');
+let download = document.getElementById('download');
 
   
 const p5Instance = new p5(p5Instance => {
@@ -230,9 +231,20 @@ const p5Instance = new p5(p5Instance => {
     }
   }
 
+
+  download.addEventListener('click', function(){
+    console.log('downloaded')
+    p5Instance.saveCanvas(
+      ('air-ink-canvas-' + 
+      String(p5Instance.round(p5Instance.random(0, 10000)))), 
+      'jpg');
+  })
   p5Instance.keyTyped = () => {
     if(p5Instance.key === 's' || p5Instance.key === 'S'){
-      p5Instance.saveCanvas('air-ink-canvas', 'jpg');
+      p5Instance.saveCanvas(
+        ('air-ink-canvas-' + 
+        String(p5Instance.round(p5Instance.random(0, 10000)))), 
+        'jpg');
       console.log('s pressed')
     }
   }

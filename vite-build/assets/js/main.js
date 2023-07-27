@@ -4,6 +4,7 @@ let brushColors;
 let brushSizes;
 let eraser;
 let clear;
+let download;
 
 // control panel layout
 icons = [
@@ -61,8 +62,17 @@ clear.innerHTML = `
         src="https://img.icons8.com/fluency/48/cancel.png" 
         alt="cancel"/>
     <p class="name">clear</p>
-`
+`;
 
+download = document.getElementById('download');
+download.innerHTML = `
+    <img 
+        width="33" 
+        height="33" 
+        src="https://img.icons8.com/pastel-glyph/64/download--v2.png" 
+        alt="download"/>
+    <p class="name">download</p>
+`;
 
 // control panel functions
 let brushColorValue;
