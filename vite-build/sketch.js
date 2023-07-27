@@ -38,6 +38,7 @@ const p5Instance = new p5(p5Instance => {
 
   p5Instance.setup = () => {
     p5Instance.createCanvas(canvasWidth, canvasHeight);
+    console.log(canvasWidth, canvasHeight)
     p5Instance.pixelDensity(5);
     p5Instance.background(backgroundColor);
     p5Instance.angleMode(p5Instance.DEEGREES);
