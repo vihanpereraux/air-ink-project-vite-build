@@ -20,6 +20,7 @@ let brushImage06;
 let brushImage07;
 let imageWidth;
 let imageHeight;;
+let getBrushTypes = document.getElementsByClassName('brush-type');
 
   
 const p5Instance = new p5(p5Instance => {
@@ -73,6 +74,10 @@ const p5Instance = new p5(p5Instance => {
       drawfromBrush07();
     }
     if(localStorage.getItem("eraser") == "enabled"){
+      for (let index = 0; index < getBrushTypes.length; index++) {
+        getBrushTypes[index].classList.remove('active-brush');
+      }
+      document.getElementById('eraser').classList.add('active-brush');
       eraseSketch();
     }
   };
@@ -82,7 +87,7 @@ const p5Instance = new p5(p5Instance => {
       let point = { x: p5Instance.mouseX, y: p5Instance.mouseY }
       points.push(point);
 
-      console.log(point);
+      // console.log(point);
 
       var data = { 
         x: point.x,

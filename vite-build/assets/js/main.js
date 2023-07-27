@@ -39,7 +39,7 @@ brushSizes = document.getElementById('brush-sizes');
 brushSizes.innerHTML = `
     <div class="brush-size">
         <p class="name">Brush size</p>
-        <input id="brush-size" type="range" min="1" max="100" value="10">
+        <input id="brush-size" type="range" min="1" max="100" value="40">
     </div>
 `;
 
@@ -80,36 +80,43 @@ for (let index = 0; index < getBrushTypes.length; index++) {
         switch (index) {
             case 0:
                 setbrushStatus();
+                addActiveClass(index);
                 localStorage.setItem("brush-type-01", "enabled");
                 break;
 
             case 1:
                 setbrushStatus();
+                addActiveClass(index);
                 localStorage.setItem("brush-type-02", "enabled");
                 break;
             
             case 2:
                 setbrushStatus();
+                addActiveClass(index);
                 localStorage.setItem("brush-type-03", "enabled");
                 break;
 
             case 3:
                 setbrushStatus();
+                addActiveClass(index);
                 localStorage.setItem("brush-type-04", "enabled");
                 break;
 
             case 4:
                 setbrushStatus();
+                addActiveClass(index);
                 localStorage.setItem("brush-type-05", "enabled");
                 break;
 
             case 5:
                 setbrushStatus();
+                addActiveClass(index);
                 localStorage.setItem("brush-type-06", "enabled");
                 break;
 
             case 6:
                 setbrushStatus();
+                addActiveClass(index);
                 localStorage.setItem("brush-type-07", "enabled");
                 break;
 
@@ -118,6 +125,13 @@ for (let index = 0; index < getBrushTypes.length; index++) {
         }    
     })
 };
+function addActiveClass(index){
+    document.getElementById('eraser').classList.remove('active-brush');
+    for (let index = 0; index < getBrushTypes.length; index++) {
+        getBrushTypes[index].classList.remove('active-brush');
+    }
+    getBrushTypes[index].classList.add('active-brush');
+}
 // event listner for the eraser
 eraser.addEventListener('click', function(){
     setbrushStatus();
@@ -125,7 +139,6 @@ eraser.addEventListener('click', function(){
 });
 // event listner for the clear
 clear.addEventListener('click', function(){
-    
 })
 
 function setbrushStatus(){
@@ -146,7 +159,7 @@ localStorage.setItem("brush-color", "#000000");
 // });
 
 // brush size
-localStorage.setItem("brush-size", 10);
+localStorage.setItem("brush-size", 40);
 brushSize = document.getElementById('brush-size');
 brushSize.addEventListener('input', function(){
     localStorage.setItem("brush-size", brushSize.value);

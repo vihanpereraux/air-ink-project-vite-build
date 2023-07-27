@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap');
 
 /* 
 	Font family : 'Nunito'
@@ -91,6 +91,7 @@ canvas{
 	display: flex;
 }
 #control-panel .brush-type{
+	cursor: pointer !important;
 	width: 60px;
 	height: 60px;
 	background: none;
@@ -118,8 +119,8 @@ canvas{
 	left: 50%;
 	width: 100%;
 	text-transform: uppercase;
-	opacity: .7;
-
+	opacity: .5;
+	color: black;
 	white-space: nowrap;
 }
 
@@ -213,5 +214,11 @@ canvas{
 	transform: translate(-50%, -50%);
 	left: 50%;
 	top: 40%;
+}
+
+.active-brush .name{
+	font-weight: 700;
+	opacity: 1 !important;
+	color: blue !important;
 }
 /* end of control panel stylings */
